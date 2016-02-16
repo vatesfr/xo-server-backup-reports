@@ -76,7 +76,7 @@ class BackupReportsXoPlugin {
 
       reportWhen = call.params.reportWhen
 
-      if (reportWhen == 'never') {
+      if (reportWhen === 'never') {
         return
       }
 
@@ -121,7 +121,7 @@ class BackupReportsXoPlugin {
     const end = moment(status.end)
     const duration = moment.duration(end - start).humanize()
 
-    if (reportWhen == 'fail' && globalStatus == 'Success') {
+    if (reportWhen === 'fail' && globalStatus === 'Success') {
       return
     }
 
