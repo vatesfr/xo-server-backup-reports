@@ -60,7 +60,7 @@ class BackupReportsXoPlugin {
   async _listener (status) {
     let nSuccess = 0
     let nCalls = 0
-    let reportWhen
+    let _reportWhen
 
     const text = []
 
@@ -74,9 +74,9 @@ class BackupReportsXoPlugin {
         return
       }
 
-      reportWhen = call.params.reportWhen
+      _reportWhen = call.params._reportWhen
 
-      if (reportWhen === 'never') {
+      if (_reportWhen === 'never') {
         return
       }
 
@@ -121,7 +121,7 @@ class BackupReportsXoPlugin {
     const end = moment(status.end)
     const duration = moment.duration(end - start).humanize()
 
-    if (reportWhen === 'fail' && globalStatus === 'Success') {
+    if (_reportWhen === 'fail' && globalStatus === 'Success') {
       return
     }
 
