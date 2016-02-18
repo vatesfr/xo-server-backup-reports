@@ -60,6 +60,7 @@ class BackupReportsXoPlugin {
   async _listener (status) {
     let nSuccess = 0
     let nCalls = 0
+    let _reportWhen
 
     const text = []
 
@@ -70,6 +71,12 @@ class BackupReportsXoPlugin {
           call.method !== 'vm.rollingDrCopy' &&
           call.method !== 'vm.rollingSnapshot' &&
           call.method !== 'vm.rollingBackup') {
+        return
+      }
+
+      _reportWhen = call.params._reportWhen
+
+      if (_reportWhen === 'never') {
         return
       }
 
@@ -87,7 +94,7 @@ class BackupReportsXoPlugin {
       let vm
 
       try {
-        vm = this._xo.getObject(call.params.id || call.params.vm)
+        vm = this._xo.getObject(call.params.id)
       } catch (e) {}
 
       const start = moment(call.start)
@@ -113,6 +120,10 @@ class BackupReportsXoPlugin {
     const start = moment(status.start)
     const end = moment(status.end)
     const duration = moment.duration(end - start).humanize()
+
+    if (_reportWhen === 'fail' && globalStatus === 'Success') {
+      return
+    }
 
     // Global status.
     text.unshift([
