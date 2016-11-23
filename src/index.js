@@ -154,7 +154,7 @@ class BackupReportsXoPlugin {
         to: this._xmppReceivers,
         message: markdown
       }),
-      xo.sendSlack && xo.sendSlack({
+      xo.sendSlackMessage && xo.sendSlackMessage({
         message: markdown
       })
     ])
