@@ -155,8 +155,7 @@ class BackupReportsXoPlugin {
         message: markdown
       }),
       xo.sendSlack && xo.sendSlack({
-        to: this._sendSlack,
-        text: markdown
+        message: markdown
       })
     ])
   }
