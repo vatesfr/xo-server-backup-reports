@@ -107,9 +107,11 @@ class BackupReportsXoPlugin {
         `  - Duration: ${duration}`
       ].join('\n'))
 
-      nagiosText.push([
-        call.error ? `[ ${vm ? vm.name_label : 'undefined'} : ${call.error.message} ]` : ''
-      ])
+      if (call.error) {
+        nagiosText.push([
+          `[ ${vm ? vm.name_label : 'undefined'} : ${call.error.message} ]`
+        ])
+      }
     })
 
     // No backup calls.
