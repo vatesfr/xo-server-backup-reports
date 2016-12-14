@@ -108,9 +108,9 @@ class BackupReportsXoPlugin {
       ].join('\n'))
 
       if (call.error) {
-        nagiosText.push([
+        nagiosText.push(
           `[ ${vm ? vm.name_label : 'undefined'} : ${call.error.message} ]`
-        ])
+        )
       }
     })
 
