@@ -89,7 +89,7 @@ class BackupReportsXoPlugin {
       let vm
 
       try {
-        vm = this._xo.getObject(call.params.id || call.params.vm)
+        vm = this._xo.getObject(call.params.id)
       } catch (e) {}
 
       const start = moment(call.start)
